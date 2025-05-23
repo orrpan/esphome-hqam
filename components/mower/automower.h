@@ -96,14 +96,14 @@ namespace esphome
       bool _writable = true;
       bool stopStatus = false;
 
-      template_::TemplateSensor *battery_level_sensor_ = nullptr;
-      template_::TemplateSensor *battery_used_sensor_ = nullptr;
-      template_::TemplateSensor *charging_time_sensor_ = nullptr;
-      template_::TemplateSensor *battery_voltage_sensor_ = nullptr;
-      template_::TemplateSensor *firmware_version_sensor_ = nullptr;
-      template_::TemplateTextSensor *mode_text_sensor_ = nullptr;
-      template_::TemplateTextSensor *status_text_sensor_ = nullptr;
-      template_::TemplateTextSensor *last_code_received_text_sensor_ = nullptr;
+      template_::TemplateSensor *battery_level_sensor_ = new template_::TemplateSensor();
+      template_::TemplateSensor *battery_used_sensor_ = new template_::TemplateSensor();
+      template_::TemplateSensor *charging_time_sensor_ = new template_::TemplateSensor();
+      template_::TemplateSensor *battery_voltage_sensor_ = new template_::TemplateSensor();
+      template_::TemplateSensor *firmware_version_sensor_ = new template_::TemplateSensor();
+      template_::TemplateTextSensor *mode_text_sensor_ = new template_::TemplateTextSensor();
+      template_::TemplateTextSensor *status_text_sensor_ = new template_::TemplateTextSensor();
+      template_::TemplateTextSensor *last_code_received_text_sensor_ = new template_::TemplateTextSensor();
 
       static constexpr uint8_t MAN_DATA[5] = {0x0F, 0x81, 0x2C, 0x00, 0x00};
       static constexpr uint8_t AUTO_DATA[5] = {0x0F, 0x81, 0x2C, 0x00, 0x01};
