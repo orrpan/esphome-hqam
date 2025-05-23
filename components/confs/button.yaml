@@ -3,33 +3,33 @@ button:
     name: "Restart"
 
   - platform: template
-    name: "Moteur droit 0x8000"
+    name: "Right Motor 0x8000"
     on_press:
-      - logger.log: Button Moteur droit 0x8000
+      - logger.log: Button Right Motor 0x8000
       - lambda: |-
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->set_right_motor(0x8000);
 
   - platform: template
-    name: "Moteur droit 0x0000"
+    name: "Right Motor 0x0000"
     on_press:
-      - logger.log: Button Moteur droit 0x0000
+      - logger.log: Button Right Motor 0x0000
       - lambda: |-
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->set_right_motor(0x0000);
 
   - platform: template
-    name: "Moteur gauche 0x8000"
+    name: "Left Motor 0x8000"
     on_press:
-      - logger.log: Button Moteur gauche 0x8000
+      - logger.log: Button Left Motor 0x8000
       - lambda: |-
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->set_left_motor(0x8000);
 
   - platform: template
-    name: "Moteur gauche 0x0000"
+    name: "Left Motor 0x0000"
     on_press:
-      - logger.log: Button Moteur gauche 0x0000
+      - logger.log: Button Left Motor 0x0000
       - lambda: |-
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->set_left_motor(0x0000);

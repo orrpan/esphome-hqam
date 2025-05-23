@@ -8,14 +8,14 @@ text_sensor:
 
   - platform: template
     id: "current_mode"
-    name: "Mode actuel"
+    name: "Current Mode"
     lambda: |-
       esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
       return {mower->get_mode_text_sensor()->state};
 
   - platform: template
     id: "status_sensor"
-    name: "Etat"
+    name: "Status"
     lambda: |-
       esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
       return {mower->get_status_text_sensor()->state};
