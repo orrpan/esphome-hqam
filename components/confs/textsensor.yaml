@@ -1,20 +1,21 @@
 text_sensor:
-  # - platform: template
-  #   name: "Template Text Sensor"
-  #   lambda: |-
-  #     return {"Hello World"};
-  #   update_interval: 60s
-  - platform: custom
+  - platform: template
+    id: "last_read_code"
+    name: "Last received code"
     lambda: |-
-      Automower *mower = (Automower *) id(automower);
-      //App.register_component(mower);
-      return {mower->lastCodeReceivedTextSensor,mower->modeTextSensor,mower->statusTextSensor}; 
-      //,mower->batteryLevelSensor
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_last_code_received_text_sensor()->state};
 
-    text_sensors:
-      - id: "last_read_code"
-        name: "Last received code"
-      - id: "current_mode"
-        name: "Mode actuel"
-      - id: "status"
-        name: "Etat"
+  - platform: template
+    id: "current_mode"
+    name: "Mode actuel"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_mode_text_sensor()->state};
+
+  - platform: template
+    id: "status_sensor"
+    name: "Etat"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_status_text_sensor()->state};

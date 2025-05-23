@@ -1,21 +1,39 @@
 sensor:
-- platform: custom
-  lambda: |-
-      Automower *mower = (Automower *) id(automower);
-      return {mower->batteryLevelSensor,mower->chargingTimeSensor,mower->batteryUsedSensor,mower->batteryVoltageSensor,mower->firmwareVersionSensor}; 
+  - platform: template
+    id: batteryLevelSensor
+    name: "Battery level"
+    unit_of_measurement: mAh
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_level_sensor()->state};
 
-  sensors:
-    - id: batteryLevelSensor
-      name: "Battery level"
-      unit_of_measurement: mAh
-    - id: chargingTimeSensor
-      name: "Charging time"
-      unit_of_measurement: min
-    - id: batteryUsedSensor
-      name: "Battery used"
-      unit_of_measurement: mAh
-    - id: batteryVoltageSensor
-      name: "Battery voltage"
-      unit_of_measurement: V
-    - id: firmwareVersionSensor
-      name: "Firmware version"
+  - platform: template
+    id: chargingTimeSensor
+    name: "Charging time"
+    unit_of_measurement: min
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_charging_time_sensor()->state};
+
+  - platform: template
+    id: batteryUsedSensor
+    name: "Battery used"
+    unit_of_measurement: mAh
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_used_sensor()->state};
+
+  - platform: template
+    id: batteryVoltageSensor
+    name: "Battery voltage"
+    unit_of_measurement: V
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_voltage_sensor()->state};
+
+  - platform: template
+    id: firmwareVersionSensor
+    name: "Firmware version"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_firmware_version_sensor()->state};

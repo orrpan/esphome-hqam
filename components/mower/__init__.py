@@ -15,22 +15,26 @@ CONF_MODE_TEXT = "mode"
 CONF_STATUS_TEXT = "status"
 CONF_LAST_CODE = "last_code"
 
-CONFIG_SCHEMA = cv.Schema({
-    cv.GenerateID(): cv.declare_id(Automower),
-    cv.Required("uart_id"): cv.use_id(uart.UARTComponent),
-    cv.Required(CONF_UPDATE_INTERVAL): cv.positive_time_period_milliseconds,
-    cv.Optional(CONF_BATTERY_LEVEL): sensor.sensor_schema(),
-    cv.Optional(CONF_BATTERY_USED): sensor.sensor_schema(),
-    cv.Optional(CONF_CHARGING_TIME): sensor.sensor_schema(),
-    cv.Optional(CONF_BATTERY_VOLTAGE): sensor.sensor_schema(),
-    cv.Optional(CONF_FIRMWARE_VERSION): sensor.sensor_schema(),
-    cv.Optional(CONF_MODE_TEXT): text_sensor.text_sensor_schema(),
-    cv.Optional(CONF_STATUS_TEXT): text_sensor.text_sensor_schema(),
-    cv.Optional(CONF_LAST_CODE): text_sensor.text_sensor_schema(),
-}).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(): cv.declare_id(Automower),
+        cv.Required("uart_id"): cv.use_id(uart.UARTComponent),
+        cv.Required(CONF_UPDATE_INTERVAL): cv.positive_time_period_milliseconds,
+        cv.Optional(CONF_BATTERY_LEVEL): sensor.sensor_schema(),
+        cv.Optional(CONF_BATTERY_USED): sensor.sensor_schema(),
+        cv.Optional(CONF_CHARGING_TIME): sensor.sensor_schema(),
+        cv.Optional(CONF_BATTERY_VOLTAGE): sensor.sensor_schema(),
+        cv.Optional(CONF_FIRMWARE_VERSION): sensor.sensor_schema(),
+        cv.Optional(CONF_MODE_TEXT): text_sensor.text_sensor_schema(),
+        cv.Optional(CONF_STATUS_TEXT): text_sensor.text_sensor_schema(),
+        cv.Optional(CONF_LAST_CODE): text_sensor.text_sensor_schema(),
+    }
+).extend(cv.COMPONENT_SCHEMA)
+
 
 def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID], config["uart_id"], config[CONF_UPDATE_INTERVAL])
+    uart_var = yield cg.get_variable(config["uart_id"])
+    var = cg.new_Pvariable(config[CONF_ID], uart_var, config[CONF_UPDATE_INTERVAL])
     cg.add(var.set_update_interval(config[CONF_UPDATE_INTERVAL]))
     cg.register_component(var, config)
 

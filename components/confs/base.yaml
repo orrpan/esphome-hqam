@@ -27,14 +27,14 @@ text_sensor:
     id: last_code
 
 mower:
-  id: automower_component
+  id: mower_id
   uart_id: uart_mower
   update_interval: 5s
-  battery_level: battery_level
-  battery_used: battery_used
-  charging_time: charging_time
-  battery_voltage: battery_voltage
-  firmware_version: firmware_version
-  mode: mode
-  status: status
-  last_code: last_code
+  # battery_level: battery_level
+  # battery_used: battery_used
+  # charging_time: charging_time
+  # battery_voltage: battery_voltage
+  # firmware_version: firmware_version
+  # mode: mode
+  # status: status
+  # last_code: last_code
