@@ -1,7 +1,10 @@
 substitutions:
-  name: "devicename"
-  friendlyName: "Device Name"
+  name: "automower"
+  friendlyName: "Automower"
   timezone: "Europe/Stockholm"
+  rxpin: "GPIO16"
+  txpin: "GPIO17"
+  baud: "9600"
 
 esphome:
   name: ${name}
@@ -32,19 +35,20 @@ wifi:
 captive_portal:
 
 external_components:
-  - source: github://Bokenbergen/esphome-hqam@main
+  - source: github://orrpan/esphome-hqam@main
     refresh: always
 
 packages:
   remote_package:
-    url: https://github.com/Bokenbergen/esphome-hqam
+    url: https://github.com/orrpan/esphome-hqam
     ref: main
     refresh: always
-    files: [
-      components/boards/azd-esp32-v4.yaml,
-      components/confs/button.yaml,
-      components/confs/select.yaml,
-      components/confs/sensor.yaml,
-      components/confs/textsensor.yaml,
-      components/confs/switch.yaml
-    ]
+    files:
+      [
+        components/boards/esp32dev.yaml,
+        components/confs/button.yaml,
+        components/confs/select.yaml,
+        components/confs/sensor.yaml,
+        components/confs/textsensor.yaml,
+        components/confs/switch.yaml,
+      ]
