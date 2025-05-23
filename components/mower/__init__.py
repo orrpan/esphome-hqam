@@ -36,7 +36,7 @@ def to_code(config):
     uart_var = yield cg.get_variable(config["uart_id"])
     var = cg.new_Pvariable(config[CONF_ID], uart_var, config[CONF_UPDATE_INTERVAL])
     cg.add(var.set_update_interval(config[CONF_UPDATE_INTERVAL]))
-    cg.register_component(var, config)
+    yield cg.register_component(var, config)
 
     if CONF_BATTERY_LEVEL in config:
         sens = yield sensor.new_sensor(config[CONF_BATTERY_LEVEL])
