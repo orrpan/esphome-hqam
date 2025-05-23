@@ -1,5 +1,6 @@
 select:
   - platform: template
+    id: mode_select
     name: "Mode select"
     update_interval: 10s
     options:
@@ -15,11 +16,3 @@ select:
         - lambda: |-
             esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
             mower->set_mode(x);
-
-# select:
-# - platform: custom
-#   lambda: |-
-#     esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
-#     return {mower->modeSelect};
-#   id: mode_select
-#   name: "Mode"
