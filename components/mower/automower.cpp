@@ -209,6 +209,90 @@ namespace esphome
             case 0x03EA:
                 s = "MIP Mowing in progress";
                 break;
+            case 0x0006:
+                s = "Left wheel motor blocked";
+                break;
+            case 0x000C:
+                s = "No loop signal";
+                break;
+            case 0x001A:
+                s = "Station blocked";
+                break;
+            case 0x0022:
+                s = "Mower lifted";
+                break;
+            case 0x0034:
+                s = "Station no contact";
+                break;
+            case 0x0036:
+                s = "Pin expired";
+                break;
+            case 0x03E8:
+                s = "Leaving station";
+                break;
+            case 0x03EE:
+                s = "Start mowing";
+                break;
+            case 0x03F0:
+                s = "Mowing started";
+                break;
+            case 0x03F4:
+                s = "Start mowing2";
+                break;
+            case 0x03F6:
+                s = "Charging";
+                break;
+            case 0x1016:
+                s = "Waiting timer";
+                break;
+            case 0x0400:
+                s = "Parking in station";
+                break;
+            case 0x1036:
+                s = "Square mode";
+                break;
+            case 0x040E:
+                s = "Stuck";
+                break;
+            case 0x0410:
+                s = "Collission or dodge";
+                break;
+            case 0x0412:
+                s = "Searching";
+                break;
+            case 0x0414:
+                s = "Stop";
+                break;
+            case 0x0418:
+                s = "Docking";
+                break;
+            case 0x041A:
+                s = "Leaving station";
+                break;
+            case 0x041C:
+                s = "Error";
+                break;
+            case 0x0420:
+                s = "Waiting for use";
+                break;
+            case 0x0422:
+                s = "Follow boundary";
+                break;
+            case 0x0424:
+                s = "Found N-Signal";
+                break;
+            case 0x0426:
+                s = "Stuck";
+                break;
+            case 0x0428:
+                s = "Searching";
+                break;
+            case 0x042E:
+                s = "Follow guide line";
+                break;
+            case 0x0430:
+                s = "Follow loop wire";
+                break;
             default:
                 s = "STATUS_" + formatHex(val);
                 break;
