@@ -200,6 +200,8 @@ namespace esphome
         {
             if (!status_text_sensor_)
                 return;
+            if (val == 0x0410) // Collission or dodge
+                return;
             std::string s;
             switch (val)
             {
@@ -248,14 +250,11 @@ namespace esphome
             case 0x0400:
                 s = "Parking in station";
                 break;
-            case 0x1036:
+            case 0x040C:
                 s = "Square mode";
                 break;
             case 0x040E:
                 s = "Stuck";
-                break;
-            case 0x0410:
-                s = "Collission or dodge";
                 break;
             case 0x0412:
                 s = "Searching";
