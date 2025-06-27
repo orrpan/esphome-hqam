@@ -157,7 +157,7 @@ namespace esphome
                     break;
                 case 0x01EB:
                     if (battery_temperature_sensor_)
-                        battery_temperature_sensor_->publish_state(val);
+                        battery_temperature_sensor_->publish_state(val / 1000.0f));
                     break;
                 case 0x01EC:
                     if (charging_time_sensor_)
