@@ -9,33 +9,40 @@ namespace esphome
         Automower::Automower(uart::UARTComponent *parent, uint32_t update_interval)
             : PollingComponent(update_interval), uart::UARTDevice(parent)
         {
+
+            battery_temperature_sensor_ = new template_::TemplateSensor();
             battery_current_sensor_ = new template_::TemplateSensor();
             battery_level_sensor_ = new template_::TemplateSensor();
             battery_used_sensor_ = new template_::TemplateSensor();
             battery_voltage_sensor_ = new template_::TemplateSensor();
             charging_time_sensor_ = new template_::TemplateSensor();
             firmware_version_sensor_ = new template_::TemplateSensor();
+
             last_code_received_text_sensor_ = new template_::TemplateTextSensor();
             mode_text_sensor_ = new template_::TemplateTextSensor();
             status_text_sensor_ = new template_::TemplateTextSensor();
         }
 
         void Automower::set_battery_current_sensor(template_::TemplateSensor *s) { battery_current_sensor_ = s; }
+        void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
         void Automower::set_charging_time_sensor(template_::TemplateSensor *s) { charging_time_sensor_ = s; }
         void Automower::set_firmware_version_sensor(template_::TemplateSensor *s) { firmware_version_sensor_ = s; }
+
         void Automower::set_last_code_received_text_sensor(template_::TemplateTextSensor *s) { last_code_received_text_sensor_ = s; }
         void Automower::set_mode_text_sensor(template_::TemplateTextSensor *s) { mode_text_sensor_ = s; }
         void Automower::set_status_text_sensor(template_::TemplateTextSensor *s) { status_text_sensor_ = s; }
 
         template_::TemplateSensor *Automower::get_battery_current_sensor() const { return battery_current_sensor_; }
+        template_::TemplateSensor *Automower::get_battery_temperature_sensor() const { return battery_temperature_sensor_; }
         template_::TemplateSensor *Automower::get_battery_level_sensor() const { return battery_level_sensor_; }
         template_::TemplateSensor *Automower::get_battery_used_sensor() const { return battery_used_sensor_; }
         template_::TemplateSensor *Automower::get_battery_voltage_sensor() const { return battery_voltage_sensor_; }
         template_::TemplateSensor *Automower::get_charging_time_sensor() const { return charging_time_sensor_; }
         template_::TemplateSensor *Automower::get_firmware_version_sensor() const { return firmware_version_sensor_; }
+
         template_::TemplateTextSensor *Automower::get_last_code_received_text_sensor() const { return last_code_received_text_sensor_; }
         template_::TemplateTextSensor *Automower::get_mode_text_sensor() const { return mode_text_sensor_; }
         template_::TemplateTextSensor *Automower::get_status_text_sensor() const { return status_text_sensor_; }

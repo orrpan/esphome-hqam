@@ -20,23 +20,30 @@ namespace esphome
 
       void set_battery_current_sensor(template_::TemplateSensor *s);
       void set_battery_level_sensor(template_::TemplateSensor *s);
+      void set_battery_temperature_sensor(template_::TemplateSensor *s);
       void set_battery_used_sensor(template_::TemplateSensor *s);
-      void set_charging_time_sensor(template_::TemplateSensor *s);
       void set_battery_voltage_sensor(template_::TemplateSensor *s);
+      void set_blade_motor_speed_sensor(template_::TemplateSensor *s);
+      void set_charging_time_sensor(template_::TemplateSensor *s);
       void set_firmware_version_sensor(template_::TemplateSensor *s);
+
+      void set_last_code_received_text_sensor(template_::TemplateTextSensor *s);
       void set_mode_text_sensor(template_::TemplateTextSensor *s);
       void set_status_text_sensor(template_::TemplateTextSensor *s);
-      void set_last_code_received_text_sensor(template_::TemplateTextSensor *s);
 
       template_::TemplateSensor *get_battery_current_sensor() const;
       template_::TemplateSensor *get_battery_level_sensor() const;
+      template_::TemplateSensor *get_battery_temperature_sensor() const;
       template_::TemplateSensor *get_battery_used_sensor() const;
-      template_::TemplateSensor *get_charging_time_sensor() const;
       template_::TemplateSensor *get_battery_voltage_sensor() const;
+      template_::TemplateSensor *get_blade_motor_speed_sensor() const;
+      template_::TemplateSensor *get_charging_time_sensor() const;
       template_::TemplateSensor *get_firmware_version_sensor() const;
+
+      template_::TemplateTextSensor *get_last_code_received_text_sensor() const;
       template_::TemplateTextSensor *get_mode_text_sensor() const;
       template_::TemplateTextSensor *get_status_text_sensor() const;
-      template_::TemplateTextSensor *get_last_code_received_text_sensor() const;
+
       void setup() override;
       void update() override;
       void loop() override;
@@ -55,10 +62,13 @@ namespace esphome
 
       template_::TemplateSensor *battery_current_sensor_ = nullptr;
       template_::TemplateSensor *battery_level_sensor_ = nullptr;
+      template_::TemplateSensor *battery_temperature_sensor_ = nullptr;
       template_::TemplateSensor *battery_used_sensor_ = nullptr;
-      template_::TemplateSensor *charging_time_sensor_ = nullptr;
       template_::TemplateSensor *battery_voltage_sensor_ = nullptr;
+      template_::TemplateSensor *blade_motor_speed_sensor_ = nullptr;
+      template_::TemplateSensor *charging_time_sensor_ = nullptr;
       template_::TemplateSensor *firmware_version_sensor_ = nullptr;
+
       template_::TemplateTextSensor *mode_text_sensor_ = nullptr;
       template_::TemplateTextSensor *status_text_sensor_ = nullptr;
       template_::TemplateTextSensor *last_code_received_text_sensor_ = nullptr;
@@ -78,6 +88,8 @@ namespace esphome
       static constexpr uint8_t getBatteryLevel[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       static constexpr uint8_t getBatteryUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
       static constexpr uint8_t getBatteryVoltage[5] = {0x0F, 0x2E, 0xF4, 0x00, 0x00};
+      static constexpr uint8_t getBatteryTemperature[5] = {0x0F, 0x02, 0x33, 0x00, 0x00};
+      static constexpr uint8_t getBladeMotorSpeed[5] = {0x0F, 0x2E, 0xEA, 0x00, 0x00};
       static constexpr uint8_t getFirmwareVersion[5] = {0x0F, 0x33, 0x90, 0x00, 0x00};
       static constexpr uint8_t READ_STOP_CMD[5] = {0x0F, 0x01, 0x2F, 0x00, 0x00};
 
@@ -87,8 +99,6 @@ namespace esphome
       // static constexpr uint8_t getBatteryLastChargeMinute[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
       // static constexpr uint8_t getBatteryNextTemperatureMeasurementSecond[5] = {0x0F, 0x02, 0x36, 0x00, 0x00};
       // static constexpr uint8_t getBatteryTemperatureCharged[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryTemperatureCurrent[5] = {0x0F, 0x02, 0x33, 0x00, 0x00};
-      // static constexpr uint8_t getBladeMotorSpeed[5] = {0x0F, 0x2E, 0xEA, 0x00, 0x00};
       // static constexpr uint8_t getDay[5] = {0x0F, 0x36, 0xB7, 0x00, 0x00};
       // static constexpr uint8_t getHour[5] = {0x0F, 0x36, 0xB5, 0x00, 0x00};
       // static constexpr uint8_t getLanguageFileVersion[5] = {0x0F, 0x3A, 0xC0, 0x00, 0x00};
@@ -155,10 +165,12 @@ namespace esphome
 
       const std::list<const uint8_t *>
           pollingCommandList = {
-              getBatteryLevel,
               getBatteryCurrent,
+              getBatteryLevel,
+              getBatteryTemperature,
               getBatteryUsed,
               getBatteryVoltage,
+              getBladeMotorSpeed,
               getChargingTime,
               getFirmwareVersion,
               getModeCmd,

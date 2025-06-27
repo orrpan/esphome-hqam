@@ -39,6 +39,27 @@ sensor:
       return {mower->get_battery_current_sensor()->state};
 
   - platform: template
+    id: batteryTemperatureSensor
+    name: "Battery temperature"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_temperature_sensor()->state};
+
+  - platform: template
+    id: batteryTemperatureSensor
+    name: "Battery temperature"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_temperature_sensor()->state};
+
+  - platform: template
+    id: bladeMotorSpeedSensor
+    name: "Blade Motor Speed"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_blade_motor_speed_sensor()->state};
+
+  - platform: template
     id: firmwareVersionSensor
     name: "Firmware version"
     lambda: |-
