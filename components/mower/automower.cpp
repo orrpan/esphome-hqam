@@ -21,17 +21,17 @@ namespace esphome
 
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
-        void Automower::set_charging_time_sensor(template_::TemplateSensor *s) { charging_time_sensor_ = s; }
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
+        void Automower::set_charging_time_sensor(template_::TemplateSensor *s) { charging_time_sensor_ = s; }
         void Automower::set_firmware_version_sensor(template_::TemplateSensor *s) { firmware_version_sensor_ = s; }
+        void Automower::set_last_code_received_text_sensor(template_::TemplateTextSensor *s) { last_code_received_text_sensor_ = s; }
         void Automower::set_mode_text_sensor(template_::TemplateTextSensor *s) { mode_text_sensor_ = s; }
         void Automower::set_status_text_sensor(template_::TemplateTextSensor *s) { status_text_sensor_ = s; }
-        void Automower::set_last_code_received_text_sensor(template_::TemplateTextSensor *s) { last_code_received_text_sensor_ = s; }
 
         template_::TemplateSensor *Automower::get_battery_level_sensor() const { return battery_level_sensor_; }
         template_::TemplateSensor *Automower::get_battery_used_sensor() const { return battery_used_sensor_; }
-        template_::TemplateSensor *Automower::get_charging_time_sensor() const { return charging_time_sensor_; }
         template_::TemplateSensor *Automower::get_battery_voltage_sensor() const { return battery_voltage_sensor_; }
+        template_::TemplateSensor *Automower::get_charging_time_sensor() const { return charging_time_sensor_; }
         template_::TemplateSensor *Automower::get_firmware_version_sensor() const { return firmware_version_sensor_; }
         template_::TemplateTextSensor *Automower::get_mode_text_sensor() const { return mode_text_sensor_; }
         template_::TemplateTextSensor *Automower::get_status_text_sensor() const { return status_text_sensor_; }
@@ -92,7 +92,6 @@ namespace esphome
             write_array(data, 5);
         }
 
-        void Automower::update_battery_capacity() { write_array(getBatteryCapacity, 5); }
         void Automower::update_battery_capacity() { write_array(getBatteryCapacity, 5); }
 
         void Automower::sendCommands(int index)
