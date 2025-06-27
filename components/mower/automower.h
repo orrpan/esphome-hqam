@@ -48,7 +48,7 @@ namespace esphome
       void key_yes();
       void key_num(uint8_t num);
 
-      void update_battery_capacity_mAh();
+      void update_battery_capacity();
 
     protected:
       bool _writable = true;
@@ -75,57 +75,53 @@ namespace esphome
       static constexpr uint8_t getStatusCode[5] = {0x0F, 0x01, 0xF1, 0x00, 0x00};
       static constexpr uint8_t getChargingTime[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
       static constexpr uint8_t getBatteryCurrent[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
-      static constexpr uint8_t getBatteryLevel[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
+      static constexpr uint8_t getBatteryCapacity[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       static constexpr uint8_t getBatteryUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
       static constexpr uint8_t getBatteryVoltage[5] = {0x0F, 0x2E, 0xF4, 0x00, 0x00};
       static constexpr uint8_t getFirmwareVersion[5] = {0x0F, 0x33, 0x90, 0x00, 0x00};
       static constexpr uint8_t READ_STOP_CMD[5] = {0x0F, 0x01, 0x2F, 0x00, 0x00};
 
+      // static constexpr uint8_t getBatteryCapacity[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryCapacityUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryChargingTimeMinute[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryLastChargeMinute[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryNextTemperatureMeasurementSecond[5] = {0x0F, 0x02, 0x36, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryTemperatureCharged[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryTemperatureCurrent[5] = {0x0F, 0x02, 0x33, 0x00, 0x00};
+      // static constexpr uint8_t getBladeMotorSpeed[5] = {0x0F, 0x2E, 0xEA, 0x00, 0x00};
+      // static constexpr uint8_t getDay[5] = {0x0F, 0x36, 0xB7, 0x00, 0x00};
+      // static constexpr uint8_t getHour[5] = {0x0F, 0x36, 0xB5, 0x00, 0x00};
+      // static constexpr uint8_t getLanguageFileVersion[5] = {0x0F, 0x3A, 0xC0, 0x00, 0x00};
       // static constexpr uint8_t getMealTime[5] = {0x0F, 0x00, 0x38, 0x00, 0x00};
+      // static constexpr uint8_t getMinute[5] = {0x0F, 0x36, 0xB3, 0x00, 0x00};
+      // static constexpr uint8_t getMonth[5] = {0x0F, 0x36, 0xB9, 0x00, 0x00};
+      // static constexpr uint8_t getSecond[5] = {0x0F, 0x36, 0xB1, 0x00, 0x00};
+      // static constexpr uint8_t getSpeedLeft[5] = {0x0F, 0x24, 0xC0, 0x00, 0x00};
+      // static constexpr uint8_t getSpeedRight[5] = {0x0F, 0x24, 0xBF, 0x00, 0x00};
       // static constexpr uint8_t getSquareModePercent[5] = {0x0F, 0x01, 0x34, 0x00, 0x00};
       // static constexpr uint8_t getSquareModeStatus[5] = {0x0F, 0x01, 0x37, 0x00, 0x00};
       // static constexpr uint8_t getSquareModeStatus[5] = {0x0F, 0x01, 0x38, 0x00, 0x00};
-      static constexpr uint8_t getBatteryCapacity_mAh[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryChargingTimeMinute[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryCapacity_mAh[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryCapacitySearchStart_mAh[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       // static constexpr uint8_t getStatus[5] = {0x0F, 0x01, 0xF1, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryTemperatureCurrent[5] = {0x0F, 0x02, 0x33, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryLastChargeMinute[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryTemperatureCharged[5] = {0x0F, 0x02, 0x35, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryNextTemperatureMeasurementSecond[5] = {0x0F, 0x02, 0x36, 0x00, 0x00};
-      // static constexpr uint8_t getSpeedRight[5] = {0x0F, 0x24, 0xBF, 0x00, 0x00};
-      // static constexpr uint8_t getSpeedLeft[5] = {0x0F, 0x24, 0xC0, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryCapacityUsed_mAh[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
-      // static constexpr uint8_t getBladeMotorSpeed[5] = {0x0F, 0x2E, 0xEA, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryVoltage_mV[5] = {0x0F, 0x2E, 0xF4, 0x00, 0x00};
-      // static constexpr uint8_t getFirmwareVersion[5] = {0x0F, 0x33, 0x90, 0x00, 0x00};
-      // static constexpr uint8_t getSecond[5] = {0x0F, 0x36, 0xB1, 0x00, 0x00};
-      // static constexpr uint8_t getMinute[5] = {0x0F, 0x36, 0xB3, 0x00, 0x00};
-      // static constexpr uint8_t getHour[5] = {0x0F, 0x36, 0xB5, 0x00, 0x00};
-      // static constexpr uint8_t getDay[5] = {0x0F, 0x36, 0xB7, 0x00, 0x00};
-      // static constexpr uint8_t getMonth[5] = {0x0F, 0x36, 0xB9, 0x00, 0x00};
-      // static constexpr uint8_t getYear[5] = {0x0F, 0x36, 0xBD, 0x00, 0x00};
-      // static constexpr uint8_t getLanguageFileVersion[5] = {0x0F, 0x3A, 0xC0, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer1StartHour[5] = {0x0F, 0x4A, 0x38, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer1StartMinute[5] = {0x0F, 0x4A, 0x39, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer1StopHour[5] = {0x0F, 0x4A, 0x3A, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer1StopMinute[5] = {0x0F, 0x4A, 0x3B, 0x00, 0x00};
+      // static constexpr uint8_t getTimerDays[5] = {0x0F, 0x4A, 0x50, 0x00, 0x00};
+      // static constexpr uint8_t getTimerStatus[5] = {0x0F, 0x4A, 0x4E, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer1StartHour[5] = {0x0F, 0x4A, 0x3C, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer1StartMinute[5] = {0x0F, 0x4A, 0x3D, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer1StopHour[5] = {0x0F, 0x4A, 0x3E, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer1StopMinute[5] = {0x0F, 0x4A, 0x3F, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer2StartHour[5] = {0x0F, 0x4A, 0x40, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer2StartMinute[5] = {0x0F, 0x4A, 0x41, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer2StopHour[5] = {0x0F, 0x4A, 0x42, 0x00, 0x00};
-      // static constexpr uint8_t getWeekTimer2StopMinute[5] = {0x0F, 0x4A, 0x43, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer2StartHour[5] = {0x0F, 0x4A, 0x44, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer2StartMinute[5] = {0x0F, 0x4A, 0x45, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer2StopHour[5] = {0x0F, 0x4A, 0x46, 0x00, 0x00};
       // static constexpr uint8_t getWeekEndTimer2StopMinute[5] = {0x0F, 0x4A, 0x47, 0x00, 0x00};
-      // static constexpr uint8_t getTimerStatus[5] = {0x0F, 0x4A, 0x4E, 0x00, 0x00};
-      // static constexpr uint8_t getTimerDays[5] = {0x0F, 0x4A, 0x50, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer1StartHour[5] = {0x0F, 0x4A, 0x38, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer1StartMinute[5] = {0x0F, 0x4A, 0x39, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer1StopHour[5] = {0x0F, 0x4A, 0x3A, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer1StopMinute[5] = {0x0F, 0x4A, 0x3B, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer2StartHour[5] = {0x0F, 0x4A, 0x40, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer2StartMinute[5] = {0x0F, 0x4A, 0x41, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer2StopHour[5] = {0x0F, 0x4A, 0x42, 0x00, 0x00};
+      // static constexpr uint8_t getWeekTimer2StopMinute[5] = {0x0F, 0x4A, 0x43, 0x00, 0x00};
       // static constexpr uint8_t getWeekTimerDays[5] = {0x0F, 0x4A, 0x50, 0x00, 0x00};
+      // static constexpr uint8_t getYear[5] = {0x0F, 0x36, 0xBD, 0x00, 0x00};
 
       // static constexpr uint8_t setKey0[5] = {0x0F, 0x80, 0x5F, 0x00, 0x00};
       // static constexpr uint8_t setKey1[5] = {0x0F, 0x80, 0x5F, 0x00, 0x01};
@@ -159,9 +155,15 @@ namespace esphome
 
       const std::list<const uint8_t *>
           pollingCommandList = {
-              getModeCmd, getStatusCode, getBatteryLevel,
-              getChargingTime, getBatteryUsed, getBatteryVoltage,
-              getFirmwareVersion, READ_STOP_CMD};
+              getBatteryCapacity,
+              getBatteryCurrent,
+              getBatteryUsed,
+              getBatteryVoltage,
+              getChargingTime,
+              getFirmwareVersion,
+              getModeCmd,
+              getStatusCode,
+              READ_STOP_CMD};
 
       void sendCommands(int index);
       void checkUartRead();

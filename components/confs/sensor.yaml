@@ -33,6 +33,13 @@ sensor:
       return {mower->get_battery_voltage_sensor()->state};
 
   - platform: template
+    id: batteryCurrentSensor
+    name: "Battery Current"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_battery_current_sensor()->state};
+
+  - platform: template
     id: firmwareVersionSensor
     name: "Firmware version"
     lambda: |-
