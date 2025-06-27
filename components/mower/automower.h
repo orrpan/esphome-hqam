@@ -48,7 +48,7 @@ namespace esphome
       void key_yes();
       void key_num(uint8_t num);
 
-      void update_battery_capacity();
+      void update_battery_level();
 
     protected:
       bool _writable = true;
