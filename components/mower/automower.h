@@ -18,6 +18,7 @@ namespace esphome
     public:
       Automower(uart::UARTComponent *parent, uint32_t update_interval);
 
+      void set_battery_current_sensor(template_::TemplateSensor *s);
       void set_battery_level_sensor(template_::TemplateSensor *s);
       void set_battery_used_sensor(template_::TemplateSensor *s);
       void set_charging_time_sensor(template_::TemplateSensor *s);
@@ -27,6 +28,7 @@ namespace esphome
       void set_status_text_sensor(template_::TemplateTextSensor *s);
       void set_last_code_received_text_sensor(template_::TemplateTextSensor *s);
 
+      template_::TemplateSensor *get_battery_current_sensor() const;
       template_::TemplateSensor *get_battery_level_sensor() const;
       template_::TemplateSensor *get_battery_used_sensor() const;
       template_::TemplateSensor *get_charging_time_sensor() const;
@@ -35,7 +37,6 @@ namespace esphome
       template_::TemplateTextSensor *get_mode_text_sensor() const;
       template_::TemplateTextSensor *get_status_text_sensor() const;
       template_::TemplateTextSensor *get_last_code_received_text_sensor() const;
-
       void setup() override;
       void update() override;
       void loop() override;
@@ -54,6 +55,7 @@ namespace esphome
       bool _writable = true;
       bool stopStatus = false;
 
+      template_::TemplateSensor *battery_current_sensor_ = nullptr;
       template_::TemplateSensor *battery_level_sensor_ = nullptr;
       template_::TemplateSensor *battery_used_sensor_ = nullptr;
       template_::TemplateSensor *charging_time_sensor_ = nullptr;
