@@ -155,7 +155,7 @@ namespace esphome
 
       const std::list<const uint8_t *>
           pollingCommandList = {
-              getBatteryCapacity,
+              getBatteryLevel,
               getBatteryCurrent,
               getBatteryUsed,
               getBatteryVoltage,
