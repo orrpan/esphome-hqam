@@ -35,7 +35,7 @@ CONFIG_SCHEMA = cv.Schema(
 def to_code(config):
     uart_var = yield cg.get_variable(config["uart_id"])
     var = cg.new_Pvariable(config[CONF_ID], uart_var, config[CONF_UPDATE_INTERVAL])
-    cg.add(var.set_update_interval(config[CONF_UPDATE_INTERVAL]))
+    cg.add(var.update(config[CONF_UPDATE_INTERVAL]))
     yield cg.register_component(var, config)
 
     if CONF_BATTERY_LEVEL in config:
