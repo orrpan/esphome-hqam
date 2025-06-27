@@ -15,6 +15,7 @@ namespace esphome
             battery_level_sensor_ = new template_::TemplateSensor();
             battery_used_sensor_ = new template_::TemplateSensor();
             battery_voltage_sensor_ = new template_::TemplateSensor();
+            blade_motor_speed_sensor_ = new template_::TemplateSensor();
             charging_time_sensor_ = new template_::TemplateSensor();
             firmware_version_sensor_ = new template_::TemplateSensor();
 
@@ -28,6 +29,7 @@ namespace esphome
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
+        void Automower::set_blade_motor_speed_sensor(template_::TemplateSensor *s) { blade_motor_speed_sensor_ = s; }
         void Automower::set_charging_time_sensor(template_::TemplateSensor *s) { charging_time_sensor_ = s; }
         void Automower::set_firmware_version_sensor(template_::TemplateSensor *s) { firmware_version_sensor_ = s; }
 
@@ -37,6 +39,10 @@ namespace esphome
 
         template_::TemplateSensor *Automower::get_battery_current_sensor() const { return battery_current_sensor_; }
         template_::TemplateSensor *Automower::get_battery_temperature_sensor() const { return battery_temperature_sensor_; }
+        template_::TemplateSensor *Automower::get_blade_motor_speed_sensor() const
+        {
+            return blade_motor_speed_sensor_;
+        }
         template_::TemplateSensor *Automower::get_battery_level_sensor() const { return battery_level_sensor_; }
         template_::TemplateSensor *Automower::get_battery_used_sensor() const { return battery_used_sensor_; }
         template_::TemplateSensor *Automower::get_battery_voltage_sensor() const { return battery_voltage_sensor_; }
