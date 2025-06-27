@@ -48,6 +48,8 @@ namespace esphome
       void key_yes();
       void key_num(uint8_t num);
 
+      void update_battery_capacity_mAh();
+
     protected:
       bool _writable = true;
       bool stopStatus = false;
@@ -83,7 +85,7 @@ namespace esphome
       // static constexpr uint8_t getSquareModePercent[5] = {0x0F, 0x01, 0x34, 0x00, 0x00};
       // static constexpr uint8_t getSquareModeStatus[5] = {0x0F, 0x01, 0x37, 0x00, 0x00};
       // static constexpr uint8_t getSquareModeStatus[5] = {0x0F, 0x01, 0x38, 0x00, 0x00};
-      // static constexpr uint8_t getBatteryCapacity_mAh[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
+      static constexpr uint8_t getBatteryCapacity_mAh[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
       // static constexpr uint8_t getBatteryChargingTimeMinute[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
       // static constexpr uint8_t getBatteryCapacity_mAh[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       // static constexpr uint8_t getBatteryCapacitySearchStart_mAh[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
