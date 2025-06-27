@@ -95,13 +95,6 @@ namespace esphome
             write_array(data, 5);
         }
 
-        void Automower::update_battery_level() { write_array(getBatteryLevel, 5); }
-
-        void Automower::update_battery_voltage()
-        {
-            write_array(getBatteryVoltage, 5);
-        }
-
         void Automower::sendCommands(int index)
         {
             if (index < (int)pollingCommandList.size())
