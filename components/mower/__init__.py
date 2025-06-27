@@ -38,34 +38,34 @@ def to_code(config):
     cg.add(var.set_update_interval(config[CONF_UPDATE_INTERVAL]))
     yield cg.register_component(var, config)
 
-    # if CONF_BATTERY_LEVEL in config:
-    sens = yield sensor.new_sensor(config[CONF_BATTERY_LEVEL])
-    cg.add(var.set_battery_level_sensor(sens))
+    if CONF_BATTERY_LEVEL in config:
+        sens = yield sensor.new_sensor(config[CONF_BATTERY_LEVEL])
+        cg.add(var.set_battery_level_sensor(sens))
 
-    # if CONF_BATTERY_USED in config:
-    sens = yield sensor.new_sensor(config[CONF_BATTERY_USED])
-    cg.add(var.set_battery_used_sensor(sens))
+    if CONF_BATTERY_USED in config:
+        sens = yield sensor.new_sensor(config[CONF_BATTERY_USED])
+        cg.add(var.set_battery_used_sensor(sens))
 
-    # if CONF_CHARGING_TIME in config:
-    sens = yield sensor.new_sensor(config[CONF_CHARGING_TIME])
-    cg.add(var.set_charging_time_sensor(sens))
+    if CONF_CHARGING_TIME in config:
+        sens = yield sensor.new_sensor(config[CONF_CHARGING_TIME])
+        cg.add(var.set_charging_time_sensor(sens))
 
-    # if CONF_BATTERY_VOLTAGE in config:
-    sens = yield sensor.new_sensor(config[CONF_BATTERY_VOLTAGE])
-    cg.add(var.set_battery_voltage_sensor(sens))
+    if CONF_BATTERY_VOLTAGE in config:
+        sens = yield sensor.new_sensor(config[CONF_BATTERY_VOLTAGE])
+        cg.add(var.set_battery_voltage_sensor(sens))
 
-    # if CONF_FIRMWARE_VERSION in config:
-    sens = yield sensor.new_sensor(config[CONF_FIRMWARE_VERSION])
-    cg.add(var.set_firmware_version_sensor(sens))
+    if CONF_FIRMWARE_VERSION in config:
+        sens = yield sensor.new_sensor(config[CONF_FIRMWARE_VERSION])
+        cg.add(var.set_firmware_version_sensor(sens))
 
-    # if CONF_MODE_TEXT in config:
-    sens = yield text_sensor.new_text_sensor(config[CONF_MODE_TEXT])
-    cg.add(var.set_mode_text_sensor(sens))
+    if CONF_MODE_TEXT in config:
+        sens = yield text_sensor.new_text_sensor(config[CONF_MODE_TEXT])
+        cg.add(var.set_mode_text_sensor(sens))
 
-    # if CONF_STATUS_TEXT in config:
-    sens = yield text_sensor.new_text_sensor(config[CONF_STATUS_TEXT])
-    cg.add(var.set_status_text_sensor(sens))
+    if CONF_STATUS_TEXT in config:
+        sens = yield text_sensor.new_text_sensor(config[CONF_STATUS_TEXT])
+        cg.add(var.set_status_text_sensor(sens))
 
-    # if CONF_LAST_CODE in config:
-    sens = yield text_sensor.new_text_sensor(config[CONF_LAST_CODE])
-    cg.add(var.set_last_code_received_text_sensor(sens))
+    if CONF_LAST_CODE in config:
+        sens = yield text_sensor.new_text_sensor(config[CONF_LAST_CODE])
+        cg.add(var.set_last_code_received_text_sensor(sens))
