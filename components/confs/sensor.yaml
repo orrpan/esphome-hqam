@@ -5,7 +5,7 @@ sensor:
     unit_of_measurement: mAh
     lambda: |-
       esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
-      mower->update_battery_level_sensor();
+      mower->update_battery_level();
       return {mower->get_battery_level_sensor()->state};
 
   - platform: template
