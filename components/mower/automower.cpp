@@ -167,6 +167,10 @@ namespace esphome
                     if (battery_used_sensor_)
                         battery_used_sensor_->publish_state(val);
                     break;
+                case 0x2EEA:
+                    if (blade_motor_speed_sensor_)
+                        blade_motor_speed_sensor_->publish_state(val);
+                    break;
                 case 0x2EF4:
                     if (battery_voltage_sensor_)
                         battery_voltage_sensor_->publish_state(val / 1000.0f);
