@@ -18,7 +18,6 @@ namespace esphome
     public:
       Automower(uart::UARTComponent *parent, uint32_t update_interval);
 
-      void set_battery_current_sensor(template_::TemplateSensor *s);
       void set_battery_level_sensor(template_::TemplateSensor *s);
       void set_battery_temperature_sensor(template_::TemplateSensor *s);
       void set_battery_used_sensor(template_::TemplateSensor *s);
@@ -31,7 +30,6 @@ namespace esphome
       void set_mode_text_sensor(template_::TemplateTextSensor *s);
       void set_status_text_sensor(template_::TemplateTextSensor *s);
 
-      template_::TemplateSensor *get_battery_current_sensor() const;
       template_::TemplateSensor *get_battery_level_sensor() const;
       template_::TemplateSensor *get_battery_temperature_sensor() const;
       template_::TemplateSensor *get_battery_used_sensor() const;
@@ -84,7 +82,7 @@ namespace esphome
       static constexpr uint8_t getModeCmd[5] = {0x0F, 0x01, 0x2C, 0x00, 0x00};
       static constexpr uint8_t getStatusCode[5] = {0x0F, 0x01, 0xF1, 0x00, 0x00};
       static constexpr uint8_t getChargingTime[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
-      static constexpr uint8_t getBatteryCurrent[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
+      // static constexpr uint8_t getBatteryCurrent[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00}; don't know 65+
       static constexpr uint8_t getBatteryLevel[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       static constexpr uint8_t getBatteryUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
       static constexpr uint8_t getBatteryVoltage[5] = {0x0F, 0x2E, 0xF4, 0x00, 0x00};
@@ -165,7 +163,6 @@ namespace esphome
 
       const std::list<const uint8_t *>
           pollingCommandList = {
-              getBatteryCurrent,
               getBatteryLevel,
               getBatteryTemperature,
               getBatteryUsed,
