@@ -107,19 +107,16 @@ namespace esphome
 
         void Automower::sendCommands(int index)
         {
-            if (index < (int)pollingCommandList.size())
+            if (index < static_cast<int>(pollingCommandList.size()))
             {
-                set_retry(
-                    5, 3, [this, index](uint8_t attempt) -> RetryResult
-                    {
-          if (!_writable) return RetryResult::RETRY;
-          auto it = pollingCommandList.begin();
-          std::advance(it, index);
-          write_array(*it, 5);
-          _writable = false;
-          sendCommands(index + 1);
-          return RetryResult::DONE; },
-                    2.0f);
+                if (_writable)
+                {
+                    auto it = pollingCommandList.begin();
+                    std::advance(it, index);
+                    write_array(*it, 5);
+                    _writable = false;
+                    sendCommands(index + 1);
+                }
             }
         }
 
