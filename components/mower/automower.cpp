@@ -117,7 +117,6 @@ namespace esphome
                     write_array(*it, 5);
                     _writable = false;
                     ESP_LOGD("Automower", "Command %d sent", i);
-                    return; // Exit after sending the first command
                 }
             }
         }
