@@ -107,17 +107,20 @@ namespace esphome
 
         void Automower::sendCommands(int index)
         {
-
-            auto i = 0;
-            for (auto it = pollingCommandList.begin(); it != pollingCommandList.end(); ++it, ++i)
+            if (index < (int)pollingCommandList.size())
             {
-                ESP_LOGD("Automower", "Sending command %d: %02X %02X %02X %02X %02X", i, (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
-                if (i >= index && _writable)
-                {
-                    write_array(*it, 5);
-                    _writable = false;
-                    ESP_LOGD("Automower", "Command %d sent", i);
-                }
+                set_retry(
+                    5, 3, [this, index](uint8_t attempt) -> RetryResult
+                    {
+                        if (!_writable) return RetryResult::RETRY;
+                        auto it = pollingCommandList.begin();
+                        ESP_LOGD("Automower", "Sending command %d: %02X %02X %02X %02X %02X", i, (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
+                        std::advance(it, index);
+                        write_array(*it, 5);
+                        _writable = false;
+                        sendCommands(index + 1);
+                        return RetryResult::DONE; },
+                    2.0f);
             }
         }
 
