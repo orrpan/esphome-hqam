@@ -151,17 +151,17 @@ namespace esphome
                 case 0x01F1:
                     publishStatus(val);
                     break;
-                case 0x01EF:
-                    if (battery_level_sensor_)
-                        battery_level_sensor_->publish_state(val);
-                    break;
-                    // case 0x01EB:
-                    //     if (battery_temperature_sensor_)
-                    //         battery_temperature_sensor_->publish_state(val / 1000.0f);
+                case 0x01EB:
+                    if (battery_current_sensor_)
+                        battery_current_sensor_->publish_state(val);
                     break;
                 case 0x01EC:
                     if (charging_time_sensor_)
                         charging_time_sensor_->publish_state(val);
+                    break;
+                case 0x01EF:
+                    if (battery_level_sensor_)
+                        battery_level_sensor_->publish_state(val);
                     break;
                 case 0x0233:
                     if (battery_temperature_sensor_)
