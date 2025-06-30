@@ -11,7 +11,6 @@ namespace esphome
         {
 
             battery_temperature_sensor_ = new template_::TemplateSensor();
-            battery_current_sensor_ = new template_::TemplateSensor();
             battery_level_sensor_ = new template_::TemplateSensor();
             battery_used_sensor_ = new template_::TemplateSensor();
             battery_voltage_sensor_ = new template_::TemplateSensor();
@@ -24,7 +23,6 @@ namespace esphome
             status_text_sensor_ = new template_::TemplateTextSensor();
         }
 
-        void Automower::set_battery_current_sensor(template_::TemplateSensor *s) { battery_current_sensor_ = s; }
         void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
@@ -37,7 +35,6 @@ namespace esphome
         void Automower::set_mode_text_sensor(template_::TemplateTextSensor *s) { mode_text_sensor_ = s; }
         void Automower::set_status_text_sensor(template_::TemplateTextSensor *s) { status_text_sensor_ = s; }
 
-        template_::TemplateSensor *Automower::get_battery_current_sensor() const { return battery_current_sensor_; }
         template_::TemplateSensor *Automower::get_battery_temperature_sensor() const { return battery_temperature_sensor_; }
         template_::TemplateSensor *Automower::get_blade_motor_speed_sensor() const
         {
@@ -150,10 +147,6 @@ namespace esphome
                     break;
                 case 0x01F1:
                     publishStatus(val);
-                    break;
-                case 0x01EB:
-                    if (battery_current_sensor_)
-                        battery_current_sensor_->publish_state(val);
                     break;
                 case 0x01EC:
                     if (charging_time_sensor_)
