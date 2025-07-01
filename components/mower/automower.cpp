@@ -114,7 +114,7 @@ namespace esphome
                     {
                         if (!_writable) return RetryResult::RETRY;
                         auto it = pollingCommandList.begin();
-                        ESP_LOGD("Automower", "Sending command: %02X %02X %02X %02X %02X", (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
+                        ESP_LOGD("Automower", "UART TX: %02X %02X %02X %02X %02X", (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
                         std::advance(it, index);
                         write_array(*it, 5);
                         _writable = false;
