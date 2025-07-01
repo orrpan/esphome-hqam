@@ -42,6 +42,7 @@ sensor:
   - platform: template
     id: bladeMotorSpeedSensor
     name: "Blade Motor Speed"
+    unit_of_measurement: RPM
     lambda: |-
       esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
       return {mower->get_blade_motor_speed_sensor()->state};
