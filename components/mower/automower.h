@@ -91,6 +91,7 @@ namespace esphome
       static constexpr uint8_t getFirmwareVersion[5] = {0x0F, 0x33, 0x90, 0x00, 0x00};
       static constexpr uint8_t READ_STOP_CMD[5] = {0x0F, 0x01, 0x2F, 0x00, 0x00};
 
+
       // static constexpr uint8_t getBatteryCapacity[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
       // static constexpr uint8_t getBatteryCapacityUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
       // static constexpr uint8_t getBatteryChargingTimeMinute[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
@@ -130,7 +131,6 @@ namespace esphome
       // static constexpr uint8_t getWeekTimer2StopMinute[5] = {0x0F, 0x4A, 0x43, 0x00, 0x00};
       // static constexpr uint8_t getWeekTimerDays[5] = {0x0F, 0x4A, 0x50, 0x00, 0x00};
       // static constexpr uint8_t getYear[5] = {0x0F, 0x36, 0xBD, 0x00, 0x00};
-
       // static constexpr uint8_t setKey0[5] = {0x0F, 0x80, 0x5F, 0x00, 0x00};
       // static constexpr uint8_t setKey1[5] = {0x0F, 0x80, 0x5F, 0x00, 0x01};
       // static constexpr uint8_t setKey2[5] = {0x0F, 0x80, 0x5F, 0x00, 0x02};
@@ -173,6 +173,7 @@ namespace esphome
               getModeCmd,
               getStatusCode,
               READ_STOP_CMD};
+
 
       void sendCommands(int index);
       void checkUartRead();
