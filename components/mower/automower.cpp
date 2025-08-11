@@ -227,6 +227,9 @@ namespace esphome
             std::string s;
             switch (val)
             {
+            case 0x0010:
+                s = "Outside working area";
+                break;
             case 0x0012:
                 s = "LBV Low battery voltage";
                 break;
