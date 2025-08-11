@@ -239,6 +239,9 @@ namespace esphome
             case 0x0006:
                 s = "Left wheel motor blocked";
                 break;
+            case 0x0008:
+                s = "Right wheel motor blocked";
+                break;
             case 0x000C:
                 s = "No loop signal";
                 break;
