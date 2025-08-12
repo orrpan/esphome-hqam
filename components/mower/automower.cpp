@@ -205,6 +205,9 @@ namespace esphome
             case 0x0001:
                 mode = "AUTO";
                 break;
+            case 0x0002:
+                mode = "Charging then AUTO";
+                break;
             case 0x0003:
                 mode = "HOME";
                 break;
