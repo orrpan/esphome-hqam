@@ -275,6 +275,9 @@ namespace esphome
             case 0x03F6:
                 s = "Charging";
                 break;
+            case 0x03F8:
+                s = "Waiting timer2";
+                break;
             case 0x1016:
                 s = "Waiting timer";
                 break;
