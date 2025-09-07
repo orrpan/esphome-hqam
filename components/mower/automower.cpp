@@ -111,17 +111,29 @@ namespace esphome
 
         void Automower::sendCommands(int index)
         {
-            if (index < (int)pollingCommandList.size())
-                ESP_LOGD("Automower", "sendCommands index=%d size=%d", index, (int)pollingCommandList.size());
+            if (index <= pollingCommandList.size() - 1)
             {
-                if (!_writable)
-                    return;
-                auto it = pollingCommandList.begin();
-                std::advance(it, index);
-                ESP_LOGD("Automower", "UART TX: %02X %02X %02X %02X %02X", (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
-                write_array(*it, 5);
-                _writable = false;
-                sendCommands(index + 1);
+                set_retry(
+                    5, // Temps d'attente initial en millisecondes
+                    3, // Nombre maximal de tentatives
+                    [this, index](uint8_t attempt) -> RetryResult
+                    {
+                        if (!_writable)
+                        {
+                            return RetryResult::RETRY;
+                        }
+                        else
+                        {
+                            auto it = pollingCommandList.begin();
+                            std::advance(it, index); // Move the iterator 'index' positions forward
+                            this->write_array(*it, 5);
+                            this->_writable = false;
+                            this->sendCommands(index + 1);
+                            return RetryResult::DONE;
+                        }
+                    },
+                    2.0f // Facteur d'augmentation du temps d'attente entre les tentatives
+                );
             }
         }
 
