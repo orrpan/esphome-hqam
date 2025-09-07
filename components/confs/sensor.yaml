@@ -16,6 +16,14 @@ sensor:
       return {mower->get_charging_time_sensor()->state};
 
   - platform: template
+    id: mowingTimeSensor
+    name: "Mowing time"
+    unit_of_measurement: min
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_mowing_time_sensor()->state};
+
+  - platform: template
     id: batteryUsedSensor
     name: "Battery used"
     unit_of_measurement: mAh
