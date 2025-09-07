@@ -24,8 +24,8 @@ namespace esphome
             status_text_sensor_ = new template_::TemplateTextSensor();
         }
 
-        void Automower::set_battery_temperature_sensor(sensor_::number::NumberSensor *s) { battery_temperature_sensor_ = s; }
-        // void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
+        // void Automower::set_battery_temperature_sensor(sensor_::number::NumberSensor *s) { battery_temperature_sensor_ = s; }
+        void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
