@@ -43,6 +43,7 @@ namespace esphome
       template_::TemplateTextSensor *get_last_code_received_text_sensor() const;
       template_::TemplateTextSensor *get_mode_text_sensor() const;
       template_::TemplateTextSensor *get_status_text_sensor() const;
+      template_::TemplateTextSensor *get_status_message_text_sensor() const;
 
       void setup() override;
       void update() override;
@@ -73,6 +74,7 @@ namespace esphome
 
       template_::TemplateTextSensor *mode_text_sensor_ = nullptr;
       template_::TemplateTextSensor *status_text_sensor_ = nullptr;
+      template_::TemplateTextSensor *status_message_text_sensor_ = nullptr;
       template_::TemplateTextSensor *last_code_received_text_sensor_ = nullptr;
 
       static constexpr uint8_t MAN_DATA[5] = {0x0F, 0x81, 0x2C, 0x00, 0x00};

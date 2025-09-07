@@ -53,6 +53,7 @@ namespace esphome
         template_::TemplateTextSensor *Automower::get_last_code_received_text_sensor() const { return last_code_received_text_sensor_; }
         template_::TemplateTextSensor *Automower::get_mode_text_sensor() const { return mode_text_sensor_; }
         template_::TemplateTextSensor *Automower::get_status_text_sensor() const { return status_text_sensor_; }
+        template_::TemplateTextSensor *Automower::get_status_message_text_sensor() const { return status_message_text_sensor_; }
 
         void Automower::setup() {}
 
@@ -233,114 +234,149 @@ namespace esphome
 
         void Automower::publishStatus(uint16_t val)
         {
-            if (!status_text_sensor_)
+            if (!status_message_text_sensor_)
                 return;
             if (val == 0x0410) // Collission or dodge
                 return;
-            std::string s;
+            std::string status;
+            std::string status_message;
             switch (val)
             {
             case 0x0010:
-                s = "Outside working area";
+                status = "error";
+                status_message = "Outside working area";
                 break;
             case 0x0012:
-                s = "LBV Low battery voltage";
+                status = "error";
+                status_message = "LBV Low battery voltage";
                 break;
             case 0x03EA:
-                s = "MIP Mowing in progress";
+                status = "mowing";
+                status_message = "MIP Mowing in progress";
                 break;
             case 0x0006:
-                s = "Left wheel motor blocked";
+                status = "error";
+                status_message = "Left wheel motor blocked";
                 break;
             case 0x0008:
-                s = "Right wheel motor blocked";
+                status = "error";
+                status_message = "Right wheel motor blocked";
                 break;
             case 0x000C:
-                s = "No loop signal";
+                status = "error";
+                status_message = "No loop signal";
                 break;
             case 0x001A:
-                s = "Station blocked";
+                status = "error";
+                status_message = "Station blocked";
                 break;
             case 0x0022:
-                s = "Mower lifted";
+                status = "error";
+                status_message = "Mower lifted";
                 break;
             case 0x0034:
-                s = "Station no contact";
+                status = "error";
+                status_message = "Station no contact";
                 break;
             case 0x0036:
-                s = "Pin expired";
+                status = "error";
+                status_message = "Pin expired";
                 break;
             case 0x03E8:
-                s = "Leaving station";
+                status = "mowing";
+                status_message = "Leaving station";
                 break;
             case 0x03EE:
-                s = "Start mowing";
+                status = "mowing";
+                status_message = "Start mowing";
                 break;
             case 0x03F0:
-                s = "Mowing started";
+                status = "mowing";
+                status_message = "Mowing started";
                 break;
             case 0x03F4:
-                s = "Start mowing2";
+                status = "mowing";
+                status_message = "Start mowing2";
                 break;
             case 0x03F6:
-                s = "Charging";
+                status = "docked";
+                status_message = "Charging";
                 break;
             case 0x03F8:
-                s = "Waiting timer2";
+                status = "docked";
+                status_message = "Waiting timer2";
                 break;
             case 0x1016:
-                s = "Waiting timer";
+                status = "docked";
+                status_message = "Waiting timer";
                 break;
             case 0x0400:
-                s = "Parking in station";
+                status = "docked";
+                status_message = "Parking in station";
                 break;
             case 0x040C:
-                s = "Square mode";
+                status = "mowing";
+                status_message = "Square mode";
                 break;
             case 0x040E:
-                s = "Stuck";
+                status = "error";
+                status_message = "Stuck";
                 break;
             case 0x0412:
-                s = "Searching";
+                status = "returning";
+                status_message = "Searching";
                 break;
             case 0x0414:
-                s = "Stop";
+                status = "paused";
+                status_message = "Stop";
                 break;
             case 0x0418:
-                s = "Docking";
+                status = "docked";
+                status_message = "Docking";
                 break;
             case 0x041A:
-                s = "Leaving station";
+                status = "mowing";
+                status_message = "Leaving station";
                 break;
             case 0x041C:
-                s = "Error";
+                status = "error";
+                status_message = "Error";
                 break;
             case 0x0420:
-                s = "Waiting for use";
+                status = "idle";
+                status_message = "Waiting for use";
                 break;
             case 0x0422:
-                s = "Follow boundary";
+                status = "mowing";
+                status_message = "Follow boundary";
                 break;
             case 0x0424:
-                s = "Found N-Signal";
+                status = "returning";
+                status_message = "Found N-Signal";
                 break;
             case 0x0426:
-                s = "Stuck";
+                status = "error";
+                status_message = "Stuck";
                 break;
             case 0x0428:
-                s = "Searching";
+                status = "returning";
+                status_message = "Searching";
                 break;
             case 0x042E:
-                s = "Follow guide line";
+                status = "returning";
+                status_message = "Follow guide line";
                 break;
             case 0x0430:
-                s = "Follow loop wire";
+                status = "returning";
+                status_message = "Follow loop wire";
                 break;
             default:
-                s = "STATUS_" + formatHex(val);
+                status = "error";
+                status_message = "STATUS_" + formatHex(val);
                 break;
             }
-            status_text_sensor_->publish_state(s);
+            status_text_sensor_->publish_state(status);
+            status_message_text_sensor_->publish_state(status_message);
         }
 
         std::string Automower::formatHex(uint16_t v)

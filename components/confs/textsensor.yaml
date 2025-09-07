@@ -19,3 +19,10 @@ text_sensor:
     lambda: |-
       esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
       return {mower->get_status_text_sensor()->state};
+
+  - platform: template
+    id: "status_message_sensor"
+    name: "Status Message"
+    lambda: |-
+      esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
+      return {mower->get_status_message_text_sensor()->state};
