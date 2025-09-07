@@ -112,6 +112,7 @@ namespace esphome
         void Automower::sendCommands(int index)
         {
             if (index < (int)pollingCommandList.size())
+                ESP_LOGD("Automower", "sendCommands index=%d size=%d", index, (int)pollingCommandList.size());
             {
                 if (!_writable)
                     return;
