@@ -38,6 +38,7 @@ namespace esphome
         void Automower::set_last_code_received_text_sensor(template_::TemplateTextSensor *s) { last_code_received_text_sensor_ = s; }
         void Automower::set_mode_text_sensor(template_::TemplateTextSensor *s) { mode_text_sensor_ = s; }
         void Automower::set_status_text_sensor(template_::TemplateTextSensor *s) { status_text_sensor_ = s; }
+        void Automower::set_status_message_text_sensor(template_::TemplateTextSensor *s) { status_message_text_sensor_ = s; }
 
         template_::TemplateSensor *Automower::get_battery_temperature_sensor() const { return battery_temperature_sensor_; }
         template_::TemplateSensor *Automower::get_blade_motor_speed_sensor() const
