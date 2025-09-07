@@ -24,7 +24,8 @@ namespace esphome
             status_text_sensor_ = new template_::TemplateTextSensor();
         }
 
-        void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
+        void Automower::set_battery_temperature_sensor(sensor_::number::NumberSensor *s) { battery_temperature_sensor_ = s; }
+        // void Automower::set_battery_temperature_sensor(template_::TemplateSensor *s) { battery_temperature_sensor_ = s; }
         void Automower::set_battery_level_sensor(template_::TemplateSensor *s) { battery_level_sensor_ = s; }
         void Automower::set_battery_used_sensor(template_::TemplateSensor *s) { battery_used_sensor_ = s; }
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
@@ -112,18 +113,14 @@ namespace esphome
         {
             if (index < (int)pollingCommandList.size())
             {
-                set_retry(
-                    5, 3, [this, index](uint8_t attempt) -> RetryResult
-                    {
-                        if (!_writable) return RetryResult::RETRY;
-                        auto it = pollingCommandList.begin();
-                        ESP_LOGD("Automower", "UART TX: %02X %02X %02X %02X %02X", (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
-                        std::advance(it, index);
-                        write_array(*it, 5);
-                        _writable = false;
-                        sendCommands(index + 1);
-                        return RetryResult::DONE; },
-                    2.0f);
+                if (!_writable)
+                    return;
+                auto it = pollingCommandList.begin();
+                std::advance(it, index);
+                ESP_LOGD("Automower", "UART TX: %02X %02X %02X %02X %02X", (*it)[0], (*it)[1], (*it)[2], (*it)[3], (*it)[4]);
+                write_array(*it, 5);
+                _writable = false;
+                sendCommands(index + 1);
             }
         }
 
@@ -159,7 +156,7 @@ namespace esphome
                 case 0x0056:
                     if (mowing_time_sensor_)
                         mowing_time_sensor_->publish_state(val);
-                    break;                    
+                    break;
                 case 0x01EF:
                     if (battery_level_sensor_)
                         battery_level_sensor_->publish_state(val);
