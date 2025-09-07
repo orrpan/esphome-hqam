@@ -57,6 +57,7 @@ namespace esphome
       void key_num(uint8_t num);
 
     protected:
+      int pollingId_ = 0;
       bool _writable = true;
       bool stopStatus = false;
 
@@ -94,7 +95,6 @@ namespace esphome
       static constexpr uint8_t getBladeMotorSpeed[5] = {0x0F, 0x2E, 0xEA, 0x00, 0x00};
       static constexpr uint8_t getFirmwareVersion[5] = {0x0F, 0x33, 0x90, 0x00, 0x00};
       static constexpr uint8_t READ_STOP_CMD[5] = {0x0F, 0x01, 0x2F, 0x00, 0x00};
-
 
       // static constexpr uint8_t getBatteryCapacity[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00};
       // static constexpr uint8_t getBatteryCapacityUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
@@ -178,7 +178,6 @@ namespace esphome
               getModeCmd,
               getStatusCode,
               READ_STOP_CMD};
-
 
       void sendCommands(int index);
       void checkUartRead();
