@@ -16,6 +16,7 @@ namespace esphome
             battery_voltage_sensor_ = new template_::TemplateSensor();
             blade_motor_speed_sensor_ = new template_::TemplateSensor();
             charging_time_sensor_ = new template_::TemplateSensor();
+            mowing_time_sensor_ = new template_::TemplateSensor();
             firmware_version_sensor_ = new template_::TemplateSensor();
 
             last_code_received_text_sensor_ = new template_::TemplateTextSensor();
@@ -29,6 +30,7 @@ namespace esphome
         void Automower::set_battery_voltage_sensor(template_::TemplateSensor *s) { battery_voltage_sensor_ = s; }
         void Automower::set_blade_motor_speed_sensor(template_::TemplateSensor *s) { blade_motor_speed_sensor_ = s; }
         void Automower::set_charging_time_sensor(template_::TemplateSensor *s) { charging_time_sensor_ = s; }
+        void Automower::set_mowing_time_sensor(template_::TemplateSensor *s) { mowing_time_sensor_ = s; }
         void Automower::set_firmware_version_sensor(template_::TemplateSensor *s) { firmware_version_sensor_ = s; }
 
         void Automower::set_last_code_received_text_sensor(template_::TemplateTextSensor *s) { last_code_received_text_sensor_ = s; }
@@ -44,6 +46,7 @@ namespace esphome
         template_::TemplateSensor *Automower::get_battery_used_sensor() const { return battery_used_sensor_; }
         template_::TemplateSensor *Automower::get_battery_voltage_sensor() const { return battery_voltage_sensor_; }
         template_::TemplateSensor *Automower::get_charging_time_sensor() const { return charging_time_sensor_; }
+        template_::TemplateSensor *Automower::get_mowing_time_sensor() const { return mowing_time_sensor_; }
         template_::TemplateSensor *Automower::get_firmware_version_sensor() const { return firmware_version_sensor_; }
 
         template_::TemplateTextSensor *Automower::get_last_code_received_text_sensor() const { return last_code_received_text_sensor_; }
@@ -153,6 +156,10 @@ namespace esphome
                     if (charging_time_sensor_)
                         charging_time_sensor_->publish_state(val);
                     break;
+                case 0x0056:
+                    if (mowing_time_sensor_)
+                        mowing_time_sensor_->publish_state(val);
+                    break;                    
                 case 0x01EF:
                     if (battery_level_sensor_)
                         battery_level_sensor_->publish_state(val);

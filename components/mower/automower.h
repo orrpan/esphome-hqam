@@ -24,6 +24,7 @@ namespace esphome
       void set_battery_voltage_sensor(template_::TemplateSensor *s);
       void set_blade_motor_speed_sensor(template_::TemplateSensor *s);
       void set_charging_time_sensor(template_::TemplateSensor *s);
+      void set_mowing_time_sensor(template_::TemplateSensor *s);
       void set_firmware_version_sensor(template_::TemplateSensor *s);
 
       void set_last_code_received_text_sensor(template_::TemplateTextSensor *s);
@@ -36,6 +37,7 @@ namespace esphome
       template_::TemplateSensor *get_battery_voltage_sensor() const;
       template_::TemplateSensor *get_blade_motor_speed_sensor() const;
       template_::TemplateSensor *get_charging_time_sensor() const;
+      template_::TemplateSensor *get_mowing_time_sensor() const;
       template_::TemplateSensor *get_firmware_version_sensor() const;
 
       template_::TemplateTextSensor *get_last_code_received_text_sensor() const;
@@ -65,6 +67,7 @@ namespace esphome
       template_::TemplateSensor *battery_voltage_sensor_ = nullptr;
       template_::TemplateSensor *blade_motor_speed_sensor_ = nullptr;
       template_::TemplateSensor *charging_time_sensor_ = nullptr;
+      template_::TemplateSensor *mowing_time_sensor_ = nullptr;
       template_::TemplateSensor *firmware_version_sensor_ = nullptr;
 
       template_::TemplateTextSensor *mode_text_sensor_ = nullptr;
@@ -82,6 +85,7 @@ namespace esphome
       static constexpr uint8_t getModeCmd[5] = {0x0F, 0x01, 0x2C, 0x00, 0x00};
       static constexpr uint8_t getStatusCode[5] = {0x0F, 0x01, 0xF1, 0x00, 0x00};
       static constexpr uint8_t getChargingTime[5] = {0x0F, 0x01, 0xEC, 0x00, 0x00};
+      static constexpr uint8_t getMowingTime[5] = {0x0F, 0x00, 0x56, 0x00, 0x00};
       // static constexpr uint8_t getBatteryCurrent[5] = {0x0F, 0x01, 0xEB, 0x00, 0x00}; don't know 65+
       static constexpr uint8_t getBatteryLevel[5] = {0x0F, 0x01, 0xEF, 0x00, 0x00};
       static constexpr uint8_t getBatteryUsed[5] = {0x0F, 0x2E, 0xE0, 0x00, 0x00};
@@ -169,6 +173,7 @@ namespace esphome
               getBatteryVoltage,
               getBladeMotorSpeed,
               getChargingTime,
+              getMowingTime,
               getFirmwareVersion,
               getModeCmd,
               getStatusCode,
