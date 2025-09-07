@@ -9,6 +9,7 @@ Automower = mower_ns.class_("Automower", cg.Component)
 CONF_BATTERY_LEVEL = "battery_level"
 CONF_BATTERY_USED = "battery_used"
 CONF_CHARGING_TIME = "charging_time"
+CONF_MOWING_TIME = "mowing_time"
 CONF_BATTERY_VOLTAGE = "battery_voltage"
 CONF_FIRMWARE_VERSION = "firmware_version"
 CONF_MODE_TEXT = "mode"
@@ -23,6 +24,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_BATTERY_LEVEL): sensor.sensor_schema(),
         cv.Optional(CONF_BATTERY_USED): sensor.sensor_schema(),
         cv.Optional(CONF_CHARGING_TIME): sensor.sensor_schema(),
+        cv.Optional(CONF_MOWING_TIME): sensor.sensor_schema(),
         cv.Optional(CONF_BATTERY_VOLTAGE): sensor.sensor_schema(),
         cv.Optional(CONF_FIRMWARE_VERSION): sensor.sensor_schema(),
         cv.Optional(CONF_MODE_TEXT): text_sensor.text_sensor_schema(),
@@ -49,6 +51,10 @@ def to_code(config):
     if CONF_CHARGING_TIME in config:
         sens = yield sensor.new_sensor(config[CONF_CHARGING_TIME])
         cg.add(var.set_charging_time_sensor(sens))
+
+    if CONF_MOWING_TIME in config:
+        sens = yield sensor.new_sensor(config[CONF_MOWING_TIME])
+        cg.add(var.set_mowing_time_sensor(sens))
 
     if CONF_BATTERY_VOLTAGE in config:
         sens = yield sensor.new_sensor(config[CONF_BATTERY_VOLTAGE])
