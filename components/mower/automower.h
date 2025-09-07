@@ -166,6 +166,7 @@ namespace esphome
 
       const std::list<const uint8_t *>
           pollingCommandList = {
+              getModeCmd,
               getBatteryLevel,
               getBatteryTemperature,
               getBatteryUsed,
@@ -174,7 +175,6 @@ namespace esphome
               getChargingTime,
               getMowingTime,
               getFirmwareVersion,
-              getModeCmd,
               getStatusCode,
               READ_STOP_CMD};
 
