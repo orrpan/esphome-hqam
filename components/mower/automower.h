@@ -56,9 +56,8 @@ namespace esphome
       void key_yes();
       void key_num(uint8_t num);
 
-      int pollingId_ = 0;
-
     protected:
+      int pollingId_ = 0;
       bool _writable = true;
       bool stopStatus = false;
 

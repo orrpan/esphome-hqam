@@ -58,7 +58,7 @@ namespace esphome
 
         void Automower::update()
         {
-            pollingId_ = pollingId_++ % pollingCommandList.size();
+            pollingId_ = (pollingId_ + 1) % pollingCommandList.size();
             sendCommands(pollingId_);
         }
 
