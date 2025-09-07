@@ -60,6 +60,8 @@ namespace esphome
       bool _writable = true;
       bool stopStatus = false;
 
+      int pollingId_ = 0;
+
       template_::TemplateSensor *battery_current_sensor_ = nullptr;
       template_::TemplateSensor *battery_level_sensor_ = nullptr;
       template_::TemplateSensor *battery_temperature_sensor_ = nullptr;

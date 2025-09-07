@@ -22,6 +22,7 @@ namespace esphome
             last_code_received_text_sensor_ = new template_::TemplateTextSensor();
             mode_text_sensor_ = new template_::TemplateTextSensor();
             status_text_sensor_ = new template_::TemplateTextSensor();
+            pollingId_ = 0;
         }
 
         // void Automower::set_battery_temperature_sensor(sensor_::number::NumberSensor *s) { battery_temperature_sensor_ = s; }
@@ -56,7 +57,7 @@ namespace esphome
 
         void Automower::setup() {}
 
-        void Automower::update() { sendCommands(0); }
+        void Automower::update() { sendCommands(Automower::pollingId_); }
 
         void Automower::loop() { checkUartRead(); }
 
@@ -111,6 +112,7 @@ namespace esphome
 
         void Automower::sendCommands(int index)
         {
+            pollingId_ = (index + 1) % pollingCommandList.size();
             if (index <= pollingCommandList.size() - 1)
             {
                 set_retry(
