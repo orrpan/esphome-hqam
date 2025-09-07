@@ -30,6 +30,7 @@ namespace esphome
       void set_last_code_received_text_sensor(template_::TemplateTextSensor *s);
       void set_mode_text_sensor(template_::TemplateTextSensor *s);
       void set_status_text_sensor(template_::TemplateTextSensor *s);
+      void set_status_message_text_sensor(template_::TemplateTextSensor *s);
 
       template_::TemplateSensor *get_battery_level_sensor() const;
       template_::TemplateSensor *get_battery_temperature_sensor() const;

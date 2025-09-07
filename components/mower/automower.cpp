@@ -22,6 +22,7 @@ namespace esphome
             last_code_received_text_sensor_ = new template_::TemplateTextSensor();
             mode_text_sensor_ = new template_::TemplateTextSensor();
             status_text_sensor_ = new template_::TemplateTextSensor();
+            status_message_text_sensor_ = new template_::TemplateTextSensor();
             pollingId_ = 0;
         }
 
