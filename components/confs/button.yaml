@@ -155,9 +155,9 @@ button:
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->key_num(0x0D);
   - platform: template
-    name: "Key MAN/AUTO"
+    name: "Key MAN⁄AUTO"
     on_press:
-      - logger.log: "Key MAN/AUTO"
+      - logger.log: "Key MAN⁄AUTO"
       - lambda: |-
           esphome::mower::Automower *mower = (esphome::mower::Automower *) id(mower_id);
           mower->key_num(0x0E);
