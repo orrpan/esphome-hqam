@@ -246,6 +246,9 @@ namespace esphome
             case 0x0012:
                 s = "LBV Low battery voltage";
                 break;
+            case 0x001e:
+                s = "Cutting system blocked";
+                break;
             case 0x03EA:
                 s = "MIP Mowing in progress";
                 break;
